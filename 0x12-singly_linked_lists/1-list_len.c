@@ -1,10 +1,10 @@
 #include "lists.h"
 /**
- * print_list - prints lists
+ * list_len - prints lists
  * @h: list to be printed
  * Return: returns the amount of elements printed
  */
-size_t print_list(const list_t *h)
+size_t list_len(const list_t *h)
 {
 	const list_t *n;
 	size_t i = 0;
@@ -13,10 +13,6 @@ size_t print_list(const list_t *h)
 
 	while (n != NULL)
 	{
-		if (n->str == NULL)
-			printf("[0] (nil)\n");
-		else
-			printf("[%i] %s\n", n->len, n->str);
 		n = n->next;
 		i++;
 	}
