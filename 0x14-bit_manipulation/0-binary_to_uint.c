@@ -1,4 +1,7 @@
 #include "main.h"
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
 
 /**
  * binary_to_uint - converts a binary number to an unsigned int.
@@ -6,24 +9,26 @@
  *
  * Return: unsigned int with decimal value of binsry number, or 0 if error
  */
+
 unsigned int binary_to_uint(const char *b)
 {
-	int i;
-	unsigned int num;
+	unsigned int num = 0, mult = 1;
+	int len;
 
-	num = 0;
-	if (!b)
+    	if (b == NULL)
 		return (0);
-	for (i = 0; b[i] != '\0'; i++)
+
+	for (len = 0; b[len];)
+		len++;
+
+	for (len -= 1; len >= 0; len--)
 	{
-		if (b[i] != '0' && b[i] != '1')
+		if (b[len] != '0' && b[len] != '1')
 			return (0);
+
+		num += (b[len] - '0') * mult;
+		mult *= 2;
 	}
-	for (i = 0; b[i] != '\0'; i++)
-	{
-		num <<= 1;
-		if (b[i] == '1')
-			num += 1;
-	}
+
 	return (num);
 }
