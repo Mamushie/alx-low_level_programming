@@ -7,23 +7,21 @@
  *
  * Return: pointer to new hash_table_t in memory (heap)
  */
-
 hash_table_t *hash_table_create(unsigned long int size)
 {
-	unsigned long int j;
-	hash_table_t *new_table = NULL;
+	hash_table_t *ht;
 
-	new_table = malloc(sizeof(hash_table_t));
-	if (!new_table)
+	if (size == 0)
 		return (NULL);
-	new_table->size = size;
-	new_table->array = malloc(sizeof(hash_node_t) * size);
-	if (!new_table->array)
-	{
-		free(new_table);
+
+	ht = malloc(sizeof(hash_table_t));
+	if (!ht)
 		return (NULL);
-	}
-	for (j = 0; j < size; j++)
-		(new_table->array)[j] = NULL;
-	return (new_table);
+
+	ht->size = size;
+	ht->array = calloc((size_t)ht->size, sizeof(hash_node_t *));
+	if (ht->array == NULL)
+		return (NULL);
+
+	return (ht);
 }
